@@ -3,21 +3,20 @@ using System.Collections;
 
 public class RockBackground : MonoBehaviour {
 
-	public bool right = false;
+	private bool instantiate = false;
 	// Use this for initialization
-	void Start () {
-		Vector3 swap = transform.position;
-		Vector3 point = Camera.main.WorldToScreenPoint(transform.position);
-		if (right) {
-			swap = Camera.main.ScreenToWorldPoint (new Vector3 (Screen.width, point.y, point.z));
-		} else {
-			swap = Camera.main.ScreenToWorldPoint (new Vector3 (0, point.y, point.z));
+
+	void OnBecameVisible () {
+		if (!instantiate) {
+			Instantiate (gameObject, transform.position + new Vector3(0,GetComponent<SpriteRenderer> ().bounds.size.y,0), Quaternion.identity);
+			instantiate = true;
 		}
-		transform.position = swap;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	void OnBecameInvisible(){
+		if (instantiate) {
+			Destroy (gameObject);
+		}
 	}
+
 }

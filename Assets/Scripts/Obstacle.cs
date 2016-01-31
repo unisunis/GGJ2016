@@ -7,10 +7,9 @@ public class Obstacle : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.tag == "Player" && hint) {
-			print ("loula");
 			hint = false;
 			GetComponent<BoxCollider2D> ().enabled = false;
-			GetComponent<SpriteRenderer> ().enabled = true;
+			GetComponent<Animator> ().enabled = true;
 		} else if (other.tag == "Player") {
 			print ("thenia");
 			//GetComponent<BoxCollider2D> ().enabled = false;
