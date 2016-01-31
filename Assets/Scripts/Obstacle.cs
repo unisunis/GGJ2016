@@ -3,16 +3,23 @@ using System.Collections;
 
 public class Obstacle : MonoBehaviour {
 
+	public GameObject hintSprite;
+	public GameObject[] obstacle;
 	private bool hint = true;
 
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.tag == "Player" && hint) {
 			hint = false;
 			GetComponent<BoxCollider2D> ().enabled = false;
-			GetComponent<Animator> ().enabled = true;
+			hintSprite.GetComponent<Animator> ().enabled = true;
 		} else if (other.tag == "Player") {
-			print ("thenia");
-			//GetComponent<BoxCollider2D> ().enabled = false;
+			foreach (GameObject obs in obstacle) {
+				if (obs.tag == "Particule") {
+					obs.SetActive (true);
+				} else {
+					obs.GetComponent<Animator> ().enabled = true;
+				}
+			}
 		}
 	}
 }
