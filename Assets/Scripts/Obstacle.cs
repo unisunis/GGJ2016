@@ -22,4 +22,11 @@ public class Obstacle : MonoBehaviour {
 			}
 		}
 	}
+
+	void OnTriggerLeave2D(Collider2D other){
+		if (other.tag == "Player" ) {
+			hint = true;
+			GetComponent<BoxCollider2D> ().enabled = true;
+		} 
+	}
 }

@@ -13,7 +13,7 @@ public class RockBackground : MonoBehaviour {
 		}
 	}
 
-	void OnBecameInvisible(){
+	void OnBecomeInvisible(){
 		if (instantiate) {
 			Destroy (gameObject);
 		}
